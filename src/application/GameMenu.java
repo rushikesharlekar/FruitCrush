@@ -32,6 +32,7 @@ public class GameMenu extends Parent {
             ft.setToValue(0);
             ft.setOnFinished(evt -> setVisible(false));
             ft.play();
+            
         });
 
 

@@ -17,9 +17,9 @@ public class MainController implements Initializable{
 	}
 	
 	
-	public void CloseApp() {
-		Platform.exit();
-		System.exit(0);
-	}
+//	public void CloseApp() {
+//		Platform.exit();
+//		System.exit(0);
+//	}
 
 }
