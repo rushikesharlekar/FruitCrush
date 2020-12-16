@@ -102,7 +102,7 @@ public class Cell {
 			this.content = cell.getAndClearContent();
 			grid.wasUpdated();
 			if (this.hasFloor()) {
-				
+				grid.tryRemove(this);
 				return true;
 			} else {
 				Cell down = around[Direction.DOWN.ordinal()];
@@ -118,7 +118,7 @@ public class Cell {
 			this.content = cell.getAndClearContent();
 			grid.wasUpdated();
 			if (this.hasFloor()) {
-				
+				grid.tryRemove(this);
 				return true;
 			} else {
 				Cell down = around[Direction.DOWN.ordinal()];
@@ -134,7 +134,7 @@ public class Cell {
 			this.content = up.getAndClearContent();
 			grid.wasUpdated();
 			if (this.hasFloor()) {
-				
+				grid.tryRemove(this);
 				return true;
 			} else {
 				Cell down = around[Direction.DOWN.ordinal()];

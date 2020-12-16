@@ -15,6 +15,7 @@ public abstract class Grid {
 	private Map<Cell, Point> gMap = new HashMap<Cell, Point>();
 	private GameState state;
 	private List<GameListener> listeners = new ArrayList<GameListener>();
+	private MoveMaker moveMaker;
 	private FigureDetector figureDetector;
 
 	protected abstract GameState newState();
@@ -39,7 +40,7 @@ public abstract class Grid {
 
 	public void initialize() //initialises the game-populates the grid with fruits and elements
         {
-		
+		moveMaker = new MoveMaker(this);
 		figureDetector = new FigureDetector(this);
 
 		for (int i = 0; i < SIZE; i++) {
@@ -113,7 +114,30 @@ public abstract class Grid {
 		g[i][j].setContent(e);
 	}
 
+	public boolean tryMove(int i1, int j1, int i2, int j2) {
+		Move move = moveMaker.getMove(i1, j1, i2, j2);
+		swapContent(i1, j1, i2, j2);
+		if (move.isValid()) {
+			move.removeElements();
+			fallElements();
+			return true;
+		} else {
+			swapContent(i1, j1, i2, j2);
+			return false;
+		}
+	}
 
+	public Figure tryRemove(Cell cell) {
+		if (gMap.containsKey(cell)) {
+			Point p = gMap.get(cell);
+			Figure f = figureDetector.checkFigure(p.x, p.y);
+			if (f != null) {
+				removeFigure(p.x, p.y, f);
+			}
+			return f;
+		}
+		return null;
+	}
 
 	private void removeFigure(int i, int j, Figure f) {
 		FruitColor color = ((Fruit) get(i, j)).getColor();

@@ -96,7 +96,19 @@ public class FruitFrame extends JFrame {
 				} else {
 					Point newPoint = translateCoords(event.getX(), event.getY());
 					if (newPoint != null) {
-						
+						System.out.println("Get second = " + newPoint);
+						game().tryMove(lastPoint.x, lastPoint.y, newPoint.x,
+								newPoint.y);
+
+						String message = ((Long) game().getScore()).toString();
+						if (game().isFinished()) {
+							if (game().playerWon()) {
+								message = message + " Finished - Player Won!";
+							} else {
+								message = message + " Finished - Loser !";
+							}
+						}
+						sp.updateScore(message);
 						lastPoint = null;
 					}
 				}
