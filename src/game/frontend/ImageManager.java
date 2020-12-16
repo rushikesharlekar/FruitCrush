@@ -43,4 +43,8 @@ public class ImageManager {
 	public Image getImage(Element e) {
 		return images.get(e.getFullKey());
 	}
+	
+	//public Image getImageHint(FruitColor cc) {
+		//return images.get(cc.toString().toLowerCase()+"Hint");
+	//}
 }

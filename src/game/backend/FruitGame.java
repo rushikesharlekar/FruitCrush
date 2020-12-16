@@ -2,10 +2,11 @@ package game.backend;
 
 import java.awt.Point;
 
-public class FruitGame {
+public class FruitGame implements GameListener {
 
 	private Class<?> levelClass;
 	private Grid grid;
+	private GameState state;
 
 	public FruitGame(Class<?> clazz) {
 		this.levelClass = clazz;
@@ -19,8 +20,9 @@ public class FruitGame {
 		} catch (InstantiationException e) {
 			System.out.println("ERROR");
 		}
+		state = grid.createState();
 		grid.initialize();
-		
+		addGameListener(this);
 	}
 
 	public int getSize() {
@@ -31,4 +33,41 @@ public class FruitGame {
 		return grid.getCell(i, j);
 	}
 
+	public void addGameListener(GameListener listener) {
+		grid.addListener(listener);
+	}
+
+	public long getScore() {
+		return state.getScore();
+	}
+
+	public boolean isFinished() {
+		return state.gameOver();
+	}
+
+	public boolean playerWon() {
+		return state.playerWon();
+	}
+
+	@Override
+	public void cellExplosion(Element e) {
+		state.addScore(e.getScore());
+	}
+
+	@Override
+	public void gridUpdated() {
+	}
+
+	public Point[] hint() {
+		for (int i = 0; i < getSize() ; i++) {
+			for (int j = 0; j < getSize(); j++) {
+
+				Point[] points = grid.getCell(i, j).evalAroundColors(j, i);
+				if (points != null && points.length > 0)
+					return points;
+
+			}
+		}
+		return null;
+	}
 }

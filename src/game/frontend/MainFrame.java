@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+
 import game.backend.FruitGame;
 
 
@@ -38,6 +39,8 @@ public class MainFrame extends JFrame {
 		
 		PlayButton playButton = new PlayButton (this);
 		add(playButton);
+		
+		
 		
 		try
 		{

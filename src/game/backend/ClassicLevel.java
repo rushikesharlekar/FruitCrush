@@ -1,16 +1,21 @@
 package game.backend;
 
-public class Level extends Grid {
+public class ClassicLevel extends Grid {
 	
 	private static int REQUIRED_SCORE = 5000; 
 	private static int MAX_MOVES = 20; 
 	
 	private Cell wallCell;
 	private Cell fruitGenCell;
-
+	
+	@Override
+	protected GameState newState() {
+		return new Level1State(REQUIRED_SCORE, MAX_MOVES);
+	}
 
 	@Override
-	protected void fillCells() {
+	protected void fillCells() //populates cells with wall cells at border and random fruits in center
+        {
 		
 		wallCell = new Cell(this);
 		wallCell.setContent(new Wall());
@@ -45,5 +50,23 @@ public class Level extends Grid {
 			}
 		}
 	}
+
 	
+	private class Level1State extends GameState {
+		private long requiredScore;
+		private long maxMoves;
+		
+		public Level1State(long requiredScore, int maxMoves) {
+			this.requiredScore = requiredScore;
+			this.maxMoves = maxMoves;
+		}
+		
+		public boolean gameOver() {
+			return playerWon() || getMoves() >= maxMoves;
+		}
+		
+		public boolean playerWon() {
+			return getScore() > requiredScore;
+		}
+	}
 }

@@ -14,4 +14,12 @@ public abstract class Element {
 		return true;
 	}
 	
+	public Direction[] explode() {
+		return null;
+	}
+	
+	public long getScore() {
+		return 0;
+	}
+	
 }

@@ -1,7 +1,7 @@
 package game.frontend;
 
 import game.backend.FruitGame;
-import game.backend.Level;
+import game.backend.ClassicLevel;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -41,7 +41,7 @@ public class LevelsFrame extends JFrame {
 		setContentPane(new ImagePanel(myImage));
 		
 		BufferedImage imageOne = ImageIO.read(new File("resources/images/one.png"));
-		ImagePanel panelOne = new ImagePanel(imageOne, this, new FruitGame(Level.class));
+		ImagePanel panelOne = new ImagePanel(imageOne, this, new FruitGame(ClassicLevel.class));
 		panelOne.setBounds(85,165,35, 35);
 		
 		add(panelOne);
@@ -66,6 +66,7 @@ public class LevelsFrame extends JFrame {
 			});
 			
 		} catch (IOException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}

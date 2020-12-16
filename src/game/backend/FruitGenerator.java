@@ -1,5 +1,5 @@
 package game.backend;
-
+//random fruit generator
 public class FruitGenerator extends Cell {
 	
 	public FruitGenerator(Grid grid) {

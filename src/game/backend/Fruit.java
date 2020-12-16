@@ -53,4 +53,8 @@ public class Fruit extends Element {
 		return "FRUIT";
 	}
 	
+	@Override
+	public long getScore() {
+		return 50;
+	}
 }

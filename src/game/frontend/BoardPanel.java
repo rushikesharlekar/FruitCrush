@@ -23,6 +23,7 @@ public class BoardPanel extends JPanel {
 		this.cells = new Image[rows][columns];
 
 		setSize(columns * cellSize + 1, rows * cellSize + 1);
+		//setBackground(Color.DARK_GRAY);
 		
 	}
 
